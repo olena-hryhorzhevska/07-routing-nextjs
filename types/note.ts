@@ -7,6 +7,8 @@ export const noteTags = [
   "Shopping",
 ] as const;
 
+export const allNoteTags = ["All", "Work", "Personal", "Meeting", "Shopping", "Todo"] as const;
+
 export interface Note {
   id: string;
   title: string;

@@ -10,12 +10,19 @@ interface FetchNotesResponse {
 export const fetchNotes = async (
   name: string,
   page: number,
-  perPage: number
+  perPage: number,
+  tag?: string
 ): Promise<FetchNotesResponse> => {
-  const url = `https://notehub-public.goit.study/api/notes?search=${name}&page=${page}&perPage=${perPage}`;
+  const url = `https://notehub-public.goit.study/api/notes`;
   const param = {
     headers: {
       Authorization: `Bearer ${myToken}`,
+    },
+      params: {
+        search: name,
+        page,
+        perPage,
+        tag: tag?.trim() || undefined
     },
   };
   const response = await axios.get<FetchNotesResponse>(url, param);

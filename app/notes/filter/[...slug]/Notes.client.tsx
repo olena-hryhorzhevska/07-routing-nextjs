@@ -1,6 +1,6 @@
 'use client';
 
-import css from '@/app/notes/Notes.client.module.css'
+import css from "./Notes.client.module.css";
 import NoteList from "@/components/NoteList/NoteList";
 import { useEffect, useState } from "react";
 
@@ -13,16 +13,21 @@ import NoteForm from "@/components/NoteForm/NoteForm";
 import { Toaster } from "react-hot-toast";
 import { useDebounce } from "use-debounce";
 
-export default function NotesPageClient() {
+interface NotesPageClientProps {
+  category: string | undefined;
+}
+
+export default function NotesPageClient({category}: NotesPageClientProps) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [debouncedSearch] = useDebounce(search, 300);
   const perPage = 12;
 
+
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ["notes", {search: debouncedSearch, page}],
-    queryFn: () => fetchNotes(debouncedSearch, page, perPage),
+    queryKey: ["notes", {search: debouncedSearch, page, category}],
+    queryFn: () => fetchNotes(debouncedSearch, page, perPage, category),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
