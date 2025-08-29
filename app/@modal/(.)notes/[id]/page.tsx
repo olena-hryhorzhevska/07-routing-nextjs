@@ -1,10 +1,10 @@
 import NoteDetailsClient from "@/app/notes/[id]/NoteDetails.client";
-import NotePreview from "@/app/@modal/(.)notes/[id]/NotePreview";
+import NotePreviewClient from "@/app/@modal/(.)notes/[id]/NotePreview.client";
 
 export default function NotePreviewMain() {
   return (
-    <NotePreview>
+    <NotePreviewClient>
       <NoteDetailsClient />
-    </NotePreview>
+    </NotePreviewClient>
   );
 }

@@ -3,7 +3,7 @@
 import Modal from "@/components/Modal/Modal";
 import { useRouter } from "next/navigation";
 
-const NotePreview = ({ children }: { children: React.ReactNode }) => {
+const NotePreviewClient = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   return (
     <Modal onClose={() => router.back()}>
@@ -12,4 +12,4 @@ const NotePreview = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default NotePreview;
+export default NotePreviewClient;
