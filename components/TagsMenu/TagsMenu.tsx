@@ -11,6 +11,7 @@ const TagsMenu = () => {
   };
 
   useEffect(() => {
+    if (!isOpen) return;
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (!target.closest(`.${css.menuContainer}`)) {
@@ -22,11 +23,11 @@ const TagsMenu = () => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  })
+  }, [isOpen]);
 
   return (
     <div className={css.menuContainer}>
-      <button className={css.menuButton} onClick={toggleMenu}>
+      <button className={css.menuButton} onClick={toggleMenu} type="button">
         Notes ▾
       </button>
       {isOpen && (
@@ -34,7 +35,13 @@ const TagsMenu = () => {
           {tags.map((tag) => {
             return (
               <li key={tag} className={css.menuItem}>
-                <Link href={`/notes/filter/${tag}`} className={css.menuLink}>
+                <Link
+                  href={`/notes/filter/${tag}`}
+                  className={css.menuLink}
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                >
                   {tag}
                 </Link>
               </li>

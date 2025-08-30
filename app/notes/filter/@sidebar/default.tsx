@@ -1,11 +1,21 @@
-import SidebarNotes from "./SidebarNotes";
+import css from "./SidebarNotes.module.css";
+import Link from "next/link";
 
-const NotesSideBar = () => {
+const SidebarNotes = () => {
+  const tags = ["All", "Work", "Personal", "Meeting", "Shopping", "Todo"];
   return (
-    <div>
-      <SidebarNotes />
-    </div>
-  )
-}
+    <ul className={css.menuList}>
+      {tags.map((tag) => {
+        return (
+          <li key={tag} className={css.menuItem}>
+            <Link href={`/notes/filter/${tag}`} className={css.menuLink}>
+              {tag}
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
 
-export default NotesSideBar;
+export default SidebarNotes;
